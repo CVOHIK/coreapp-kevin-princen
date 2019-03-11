@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#target span").css("background", "white");
+            $("#target span").hover(function (arg) {
+                $(this).css("background", "red");
+            }, function (arg) {
+                $(this).css("background", "yellow");
+            })
+        });
+
+    </script>
+</head>
+<body>
+    <div id="target" style="background-color: green; width: 25%; height: 100px;">
+        #div target 
+        <span style="margin: 10%; height:10px;">span(change me)</span>
+    </div>
+
+</body>
+</html>
