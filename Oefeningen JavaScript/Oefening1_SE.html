@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#target").css("background", "white");
+            $("#target").hover(function (arg) {
+                $(this).css("background", "red");
+            }, function (arg) {
+                $(this).css("background", "yellow");
+            })
+        });
+
+    </script>
+</head>
+<body>
+    <div id="target" style="border: 1px solid black; height: 50px; width: 25%;">
+        #target
+    </div>
+
+</body>
+</html>
+

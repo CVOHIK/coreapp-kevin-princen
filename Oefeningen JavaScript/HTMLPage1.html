@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        //object literal
+        var recept1 = {
+            titel: "Pannekoeken",
+            ingredienten: new Array("ei", "bloem", "melk", "suiker"),
+            Log: function () {
+                this.ingredienten.forEach(function (element) {
+                    console.log(element);
+                });
+            },
+            Voegtoe: function (newingredient) {
+                this.ingredienten.push(newingredient);
+            }            
+        }
+
+        //object constructor + prototype
+        function Recept2(titel, listingredienten) {
+            this.Titel = titel;
+            this.Ingredienten = listingredienten;
+            this.Log = function () {
+                this.ingredienten.forEach(function (element) {
+                    console.log(element);
+                });
+            }
+            this.Voegtoe = function (newingredient) {
+                this.Ingredienten.push(newingredient);
+            };
+        }
+        var hotdog = new Array("broodje", "worst", "saus");
+        var recept2 = new Recept2("Hotdog", hotdog);
+
+        //object class statement
+        Class CRecept{
+            constructor(titel){
+                this.Naam = naam;
+                this.Ingredienten = [];
+            }
+            voegToe(ingredient){
+                this.ingredienten.push(ingredient);
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var person = {
+            // fill code here
+            Naam: "Kevin",
+            buy: function () {
+                console.log("I'm rich");
+            }
+        };
+
+
+        var car = {
+            // fill code here
+            Merk: "Ford",
+            Model: "Mustang",
+            Kleur: "Oranje",
+            price: 42500,
+            Geluid: "Vrum Vrum",
+            drive: function () {
+                console.log(this.Geluid);
+            }
+        };
+        // print Vrum Vrum
+        car.drive();
+        // print I'm rich
+        if (car.price > 1000) {
+            person.buy(car);
+        };
+    </script>
+</head>
+<body>
+
+</body>
+</html>
