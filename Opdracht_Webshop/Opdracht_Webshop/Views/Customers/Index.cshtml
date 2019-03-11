@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Opdracht_Webshop.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    var customer = (Customer)ViewData["Customer"];
+}
+@if (customer.CustomerID == 1)
+{
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Opdracht_Webshop</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Inlogscherm</a></li>
+                    <li><a asp-area="" asp-controller="Customers" asp-action="Index">Customers</a></li>
+                    <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+}
+else
+{
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Opdracht_Webshop</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Shoppingbags" asp-action="Overzicht" asp-route-id="@customer.CustomerID">Shoppingbag</a></li>
+                    <li><a asp-area="" asp-controller="Products" asp-action="Verkoop" asp-route-id="@customer.CustomerID">Products</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @if (item.CustomerID!=1)
+                    {
+                    <a asp-action="Edit" asp-route-id="@item.CustomerID">Edit</a><span>|</span>
+                    <a asp-action="Details" asp-route-id="@item.CustomerID">Details</a><span>|</span>
+                    <a asp-action="Delete" asp-route-id="@item.CustomerID">Delete</a>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,143 @@
+﻿@model Opdracht_Webshop.Models.Shoppingbag
+
+@{
+    ViewData["Title"] = "Overzicht";
+    var customer = (Customer)ViewData["Customer"];
+}
+@if (customer.CustomerID == 1)
+{
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Opdracht_Webshop</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Inlogscherm</a></li>
+                <li><a asp-area="" asp-controller="Customers" asp-action="Index">Customers</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+}
+else
+{
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Opdracht_Webshop</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Shoppingbags" asp-action="Overzicht" asp-route-id="@customer.CustomerID">Shoppingbag</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Verkoop" asp-route-id="@customer.CustomerID">Products</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+}
+
+<h2>Overzicht</h2>
+
+<div>
+    <h4>Shoppingbag</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TotalPrice) €
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.FullName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Shoppingitems)
+                </dt>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <dl class="dl-horizontal">
+                <dt>Products</dt>
+                <dd>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price/Item</th>
+                                    <th>Subtotaal</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Shoppingitems)
+                {
+                                <tr>
+                                    <td>@item.Product.Name</td>
+                                    <td>
+                                        <div class="input-group col-xs-6">
+                                            <form asp-action="Edit" asp-controller="Shoppingitems">
+                                                <input type="hidden" value="@item.ShoppingitemID" name="id" />
+                                                <input type="hidden" value="@item.ShoppingitemID" name="ShoppingitemID" />
+                                                <input type="hidden" value="@item.ProductID" name="ProductID" />
+                                                <input type="hidden" value="@item.ShoppingbagID" name="ShoppingbagID" />
+                                                <span class="input-group-btn">
+                                                    <input asp-for="@item.Quantity" class="form-control" name="Quantity" />
+                                                    <button type="submit" class="btn btn-success"><i class="far fa-save"></i></button>
+                                                </span>
+                                                <span asp-validation-for="@item.Quantity" class="text-danger"></span>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td>@item.Product.Price €</td>
+                                    <td>@item.BerekenSubTotaal() €</td>
+                                    <td>
+                                        <form asp-action="Delete" asp-controller="Shoppingitems">
+                                            <input type="hidden" value="@item.ShoppingitemID" name="id" />
+                                            <input type="submit" value="Delete" class="btn btn-danger" />
+                                        </form>
+                                    </td>
+                                </tr>
+                }
+                            </tbody>
+                        </table>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Verkoop" asp-controller="Products" asp-route-id="@Model.CustomerID">Products</a>
+</div>

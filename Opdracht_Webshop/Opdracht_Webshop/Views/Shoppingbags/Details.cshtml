@@ -1,0 +1,65 @@
+﻿@model Opdracht_Webshop.Models.Shoppingbag
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Shoppingbag</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.FullName)
+        </dd>        
+        <dt>
+            @Html.DisplayNameFor(model => model.Shoppingitems)
+        </dt>
+        <dd>
+            <div class="table-responsive">
+                <!-- <table border="1">-->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price/Item</th>
+                            <th>Subtotaal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Shoppingitems)
+                        {
+                            <tr>
+                                <td>@item.Product.Name</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Product.Price €</td>
+                                <td>@item.BerekenSubTotaal() €</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ShoppingbagID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
