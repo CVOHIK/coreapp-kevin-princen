@@ -1,0 +1,15 @@
+<div>
+<p>
+  kevin works!
+</p>
+</div>
+
+<div *ngIf = "isVisible == true">
+  Is deze div zichtbaar?
+</div>
+
+<table *ngIf = "getallen.length > 0">
+  <tr *ngFor = "let getal of getallen">
+    <td>{{getal}}</td>
+  </tr>
+</table>
